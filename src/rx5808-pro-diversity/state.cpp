@@ -43,7 +43,7 @@ namespace StateMachine {
         currentHandler = newHandler;
 
         if (newHandler)
-            lastHandler->onEnter();
+			newHandler->onEnter();
     }
 
     void tick() {
