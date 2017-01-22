@@ -161,21 +161,7 @@ void setupPins() {
     pinMode(PIN_BUTTON_DOWN, INPUT_PULLUP);
 	pinMode(PIN_BUTTON_SAVE, INPUT_PULLUP);
 
-    pinMode(PIN_LED_A,OUTPUT);
-    #ifdef USE_DIVERSITY
-        pinMode(PIN_LED_B,OUTPUT);
-    #endif
-
-    pinMode(PIN_SPI_SLAVE_SELECT, OUTPUT);
-    pinMode(PIN_SPI_DATA, OUTPUT);
-	pinMode(PIN_SPI_CLOCK, OUTPUT);
-
-    // Enabe pull-up resistors on RSSI pins to help keep the receivers a little
-    // cooler.
-    pinMode(PIN_RSSI_A, INPUT_PULLUP);
-    #ifdef USE_DIVERSITY
-        pinMode(PIN_RSSI_B, INPUT_PULLUP);
-    #endif
+	Receiver::begin();
 }
 
 void setupSettings() {
