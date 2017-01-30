@@ -42,8 +42,8 @@ namespace StateMachine {
         currentState = newState;
         currentHandler = newHandler;
 
-        if (newHandler)
-			newHandler->onEnter();
+        if (newHandler != nullptr)
+            newHandler->onEnter();
     }
 
     void tick() {

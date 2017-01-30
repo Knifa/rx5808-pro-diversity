@@ -122,6 +122,9 @@ screens drawScreen;
 
 #endif
 
+void setupPins();
+void setupSettings();
+void haltWithError();
 
 // === Setup ===================================================================
 
@@ -149,6 +152,8 @@ void setup()
     // Setup complete.
     digitalWrite(PIN_LED, LOW);
     digitalWrite(PIN_BUZZER, LOW);
+
+    StateMachine::switchState(StateMachine::State::MANUAL);
 }
 
 void setupPins() {
@@ -159,9 +164,9 @@ void setupPins() {
     pinMode(PIN_BUTTON_MODE, INPUT_PULLUP);
 
     pinMode(PIN_BUTTON_DOWN, INPUT_PULLUP);
-	pinMode(PIN_BUTTON_SAVE, INPUT_PULLUP);
+    pinMode(PIN_BUTTON_SAVE, INPUT_PULLUP);
 
-	Receiver::begin();
+    Receiver::begin();
 }
 
 void setupSettings() {

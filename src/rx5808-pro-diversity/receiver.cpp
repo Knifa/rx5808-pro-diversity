@@ -20,28 +20,28 @@ namespace Receiver {
     #ifdef USE_DIVERSITY
         uint8_t rssiB = 0;
         uint16_t rssiBRaw = 0;
-		#define RECEIVER_COUNT 2
-	#else
-		#define RECEIVER_COUNT 1
+        #define RECEIVER_COUNT 2
+    #else
+        #define RECEIVER_COUNT 1
     #endif
 
-	RX5808 hReceivers[RECEIVER_COUNT];
+    RX5808 hReceivers[RECEIVER_COUNT];
 
-	void begin(void)
-	{
-		hReceivers[RECEIVER_A].begin(PIN_SPI_CLOCK, PIN_SPI_DATA, PIN_SPI_SLAVE_SELECT_A, PIN_RSSI_A);
-		pinMode(PIN_LED_A, OUTPUT);
+    void begin(void)
+    {
+        hReceivers[RECEIVER_A].begin(PIN_SPI_CLOCK, PIN_SPI_DATA, PIN_SPI_SLAVE_SELECT_A, PIN_RSSI_A);
+        pinMode(PIN_LED_A, OUTPUT);
 #ifdef USE_DIVERSITY
-		hReceivers[RECEIVER_B].begin(PIN_SPI_CLOCK, PIN_SPI_DATA, PIN_SPI_SLAVE_SELECT_B, PIN_RSSI_B);
-		pinMode(PIN_LED_B, OUTPUT);
+        hReceivers[RECEIVER_B].begin(PIN_SPI_CLOCK, PIN_SPI_DATA, PIN_SPI_SLAVE_SELECT_B, PIN_RSSI_B);
+        pinMode(PIN_LED_B, OUTPUT);
 #endif
-	}
+    }
 
     void setChannel(uint8_t channel)
     {
-		hReceivers[RECEIVER_A].SetFrequencyMHz(Channels::getFrequency(channel));
+        hReceivers[RECEIVER_A].setFrequencyMHz(Channels::getFrequency(channel));
 #if defined(USE_DIVERSITY) && defined(INDIVIDUAL_DIVERSITY_CONTROL)
-		hReceivers[RECEIVER_B].SetFrequencyMHz(Channels::getFrequency(channel));
+        hReceivers[RECEIVER_B].setFrequencyMHz(Channels::getFrequency(channel));
 #endif
 
         lastChannelSwitchTime = millis();
@@ -72,9 +72,9 @@ namespace Receiver {
     uint16_t updateRssi() {
         waitForStableRssi();
 
-        rssiARaw = hReceivers[RECEIVER_A].GetRSSI(RSSI_READS);
+        rssiARaw = hReceivers[RECEIVER_A].getRSSI(RSSI_READS);
 #ifdef USE_DIVERSITY
-		rssiBRaw = hReceivers[RECEIVER_B].GetRSSI(RSSI_READS);
+        rssiBRaw = hReceivers[RECEIVER_B].getRSSI(RSSI_READS);
 #endif
 
         updateRssiLimits();
