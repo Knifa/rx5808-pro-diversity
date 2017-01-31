@@ -4,6 +4,7 @@
 
 #include <stdint.h>
 #include "settings.h"
+#include "RX5808.h"
 
 
 #define RECEIVER_A 0
@@ -25,6 +26,7 @@ namespace Receiver {
         extern uint8_t rssiB;
     #endif
 
+	void begin(void);
     void setChannel(uint8_t channel);
     void waitForStableRssi();
     uint16_t updateRssi();

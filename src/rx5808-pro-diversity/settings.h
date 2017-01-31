@@ -65,6 +65,7 @@ SOFTWARE.
 // =============================================================================
 
 #define USE_DIVERSITY
+//#define INDIVIDUAL_DIVERSITY_CONTROL
 #define USE_IR_EMITTER
 //#define USE_BOOT_LOGO
 
@@ -100,7 +101,12 @@ SOFTWARE.
 #define PIN_BUZZER 6 // Must be an active buzzer, not passive.
 
 #define PIN_SPI_DATA 10
-#define PIN_SPI_SLAVE_SELECT 11
+#define PIN_SPI_SLAVE_SELECT_A 11
+#ifdef INDIVIDUAL_DIVERSITY_CONTROL
+    #define PIN_SPI_SLAVE_SELECT_B 7
+#else
+    #define PIN_SPI_SLAVE_SELECT_B PIN_SPI_SLAVE_SELECT_A
+#endif
 #define PIN_SPI_CLOCK 12
 
 #define PIN_RSSI_A A6

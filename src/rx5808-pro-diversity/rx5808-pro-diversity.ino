@@ -122,6 +122,9 @@ screens drawScreen;
 
 #endif
 
+void setupPins();
+void setupSettings();
+void haltWithError();
 
 // === Setup ===================================================================
 
@@ -158,31 +161,13 @@ void setupPins() {
     pinMode(PIN_LED, OUTPUT);
     pinMode(PIN_BUZZER, OUTPUT);
 
-    pinMode(PIN_BUTTON_UP, INPUT);
-    pinMode(PIN_BUTTON_MODE, INPUT);
-    digitalWrite(PIN_BUTTON_UP, INPUT_PULLUP);
-    digitalWrite(PIN_BUTTON_MODE, INPUT_PULLUP);
+    pinMode(PIN_BUTTON_UP, INPUT_PULLUP);
+    pinMode(PIN_BUTTON_MODE, INPUT_PULLUP);
 
-    pinMode(PIN_BUTTON_DOWN, INPUT);
-    pinMode(PIN_BUTTON_SAVE, INPUT);
-    digitalWrite(PIN_BUTTON_DOWN, INPUT_PULLUP);
-    digitalWrite(PIN_BUTTON_SAVE, INPUT_PULLUP);
+    pinMode(PIN_BUTTON_DOWN, INPUT_PULLUP);
+    pinMode(PIN_BUTTON_SAVE, INPUT_PULLUP);
 
-    pinMode(PIN_LED_A,OUTPUT);
-    #ifdef USE_DIVERSITY
-        pinMode(PIN_LED_B,OUTPUT);
-    #endif
-
-    pinMode(PIN_SPI_SLAVE_SELECT, OUTPUT);
-    pinMode(PIN_SPI_DATA, OUTPUT);
-	pinMode(PIN_SPI_CLOCK, OUTPUT);
-
-    // Enabe pull-up resistors on RSSI pins to help keep the receivers a little
-    // cooler.
-    digitalWrite(PIN_RSSI_A, HIGH);
-    #ifdef USE_DIVERSITY
-        digitalWrite(PIN_RSSI_B, HIGH);
-    #endif
+    Receiver::begin();
 }
 
 void setupSettings() {
