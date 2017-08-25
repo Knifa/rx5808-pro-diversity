@@ -28,11 +28,11 @@
 #define RTC6715_POWER_DOWN_CONTROL_REGISTER             0x0A
 #define RTC6715_STATUS_REGISTER                         0x0F
 
-class RX5808
+class Rx5808
 {
 public:
     // constructor
-    RX5808(void);
+    Rx5808(void);
 
     void begin( uint8_t clockPin,
                 uint8_t dataPin,
@@ -52,23 +52,23 @@ public:
 
 private:
     // interface pins
-    uint8_t _pChipSelect;
-    uint8_t _pClock;
-    uint8_t _pData;
-    uint8_t _pRSSI;        // analog feedback
+    uint8_t pChipSelect;
+    uint8_t pClock;
+    uint8_t pData;
+    uint8_t pRSSI;        // analog feedback
 
-    float _frequency;
+    float frequency;
 
-    uint32_t _readRegister(uint8_t address);
-    void _writeRegister(uint8_t address, uint32_t data);
+    uint32_t readRegister(uint8_t address);
+    void writeRegister(uint8_t address, uint32_t data);
 
-    void _sendAddress(uint8_t address);
-    void _sendData(uint32_t data);
-    void _shiftDataOut(uint32_t d, uint8_t s);
-    uint32_t _receiveData(void);
-    void _strobeClock(void);
-    void _chipSelectAssert(void); 
-    void _chipSelectDeassert(void);
+    void sendAddress(uint8_t address);
+    void sendData(uint32_t data);
+    void shiftDataOut(uint32_t d, uint8_t s);
+    uint32_t receiveData(void);
+    void strobeClock(void);
+    void chipSelectAssert(void); 
+    void chipSelectDeassert(void);
 };
 
 #endif

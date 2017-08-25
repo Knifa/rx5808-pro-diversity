@@ -25,7 +25,7 @@ namespace Receiver {
         #define RECEIVER_COUNT 1
     #endif
 
-    RX5808 hReceivers[RECEIVER_COUNT];
+    Rx5808 hReceivers[RECEIVER_COUNT];
 
     void begin(void)
     {

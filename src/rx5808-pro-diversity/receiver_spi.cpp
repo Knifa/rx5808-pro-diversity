@@ -63,8 +63,7 @@ namespace ReceiverSpi {
 }
 
 
-static inline void sendBit(uint8_t value)
-{
+static inline void sendBit(uint8_t value) {
     digitalWrite(PIN_SPI_CLOCK, LOW);
     delayMicroseconds(1);
 
@@ -75,7 +74,7 @@ static inline void sendBit(uint8_t value)
 
     digitalWrite(PIN_SPI_CLOCK, LOW);
     delayMicroseconds(1);
-    }
+}
 
 static inline void sendSlaveSelect(uint8_t value)
 {
